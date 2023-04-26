@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+
+  <body>
+    <div class="Hero">
+      <nav>
+        <img src="img/menu.png" class="menu-img" />
+        <h1 class="logo">Kantina</h1>
+        <ul>
+          <li><a href="./index.html">Hjem</a></li>
+          <li><a href="./Meny.html">Meny</a></li>
+          <li><a href="./Send.html">Send</a></li>
+          <li><a href="">Kontakt Oss</a></li>
+        </ul>
+      </nav>
+      <center>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+
+        <!----- Priser ----->
+        <div class="container">
+          <h1>Priser</h1>
+          <br />
+          <h4>drikker</h4>
+          <div id="drikker"></div>
+          <h4>sandwitcher</h4>
+          <div id="sandwitcher"></div>
+          <br />
+          <h4>Iskrem</h4>
+          <div id="iskrem"></div>
+        </div>
+      </center>
+    </div>
+
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
+      // TODO: Add SDKs for Firebase products that you want to use
+      import {
+        getFirestore,
+        addDoc,
+        collection,
+        getDocs,
+      } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-firestore.js";
+
+      // https://firebase.google.com/docs/web/setup#available-libraries
+
+      // Your web app's Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyDXxV5IDE97z4QXqS8PRko0DaJDrt5l2Gg",
+        authDomain: "kantine-639e0.firebaseapp.com",
+        projectId: "kantine-639e0",
+        storageBucket: "kantine-639e0.appspot.com",
+        messagingSenderId: "555039169437",
+        appId: "1:555039169437:web:ea1aa56cbfb0e9a8b62d74",
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const db = getFirestore();
+
+      // import { getDocs, collection } from "https://www.gstatic.com/firebasejs/9.6.3/firebase-firestore.js";
+
+      const snapshot = await getDocs(collection(db, "KantineListe"));
+
+      snapshot.forEach((docSnap) => {
+        console.log(docSnap.data().Meny, docSnap.data().priser);
+        if (docSnap.data().Meny == "Drikker") {
+          var divDrikker = document.createElement("div");
+          divDrikker.className = "divDrikker";
+          document.querySelector("#drikker").append(divDrikker);
+          var h4Element = document.createElement("h4");
+          h4Element.className = "h4Element";
+          document.querySelector(".divDrikker").append(h4Element);
+          var p1 = document.createElement("p");
+          p1.className = "p1Element";
+          document.querySelector(".divDrikker").append(p1);
+          var p2 = document.createElement("p");
+          p2.className = "p2Element";
+          document.querySelector(".divDrikker").append(p2);
+          h4Element.innerHTML = docSnap.data().produkt;
+          p1.innerHTML = docSnap.data().priser;
+          p2.innerHTML = docSnap.data().forklaring;
+        } else if (docSnap.data().Meny == "sandwitcher") {
+          var divSandwithcer = document.createElement("div");
+          divSandwithcer.className = "divSandwitcher";
+          document.querySelector("#sandwitcher").append(divSandwithcer);
+          var h4Element = document.createElement("h4");
+          h4Element.className = "h4Element";
+          document.querySelector(".divSandwitcher").append(h4Element);
+          var p1 = document.createElement("p");
+          p1.className = "p1Element";
+          document.querySelector(".divSandwitcher").append(p1);
+          var p2 = document.createElement("p");
+          p2.className = "p2Element";
+          document.querySelector(".divSandwitcher").append(p2);
+          h4Element.innerHTML = docSnap.data().produkt;
+          p1.innerHTML = docSnap.data().priser;
+          p2.innerHTML = docSnap.data().forklaring;
+        } else if (docSnap.data().Meny == "Iskrem") {
+          var divIskrem = document.createElement("div");
+          divIskrem.className = "divIskrem";
+          document.querySelector("#iskrem").append(divIskrem);
+          var h4Element = document.createElement("h4");
+          h4Element.className = "h4Element";
+          document.querySelector(".divIskrem").append(h4Element);
+          var p1 = document.createElement("p");
+          p1.className = "p1Element";
+          document.querySelector(".divIskrem").append(p1);
+          var p2 = document.createElement("p");
+          p2.className = "p2Element";
+          document.querySelector(".divIskrem").append(p2);
+          h4Element.innerHTML = docSnap.data().produkt;
+          p1.innerHTML = docSnap.data().priser;
+          p2.innerHTML = docSnap.data().forklaring;
+        }
+      });
+    </script>
+
+    <!-- <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        import { getFirestore, collection, doc, addDoc, setDoc, getDoc, getDocs, query, where, orderBy  } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-firestore.js"
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+          apiKey: "AIzaSyCe-zERPbPcvRrWpvEUSHdYQqmv3_jTB50",
+          authDomain: "kantina-5211a.firebaseapp.com",
+          projectId: "kantina-5211a",
+          storageBucket: "kantina-5211a.appspot.com",
+          messagingSenderId: "1074705955973",
+          appId: "1:1074705955973:web:61193dba2898e750443dec"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore();
+
+     
+
+      </script> -->
+    <script src="./script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="Hero">
+        <nav>
+            <img src="img/menu.png" class="menu-img">
+            <h1 class="logo">Kantina </h1>
+            <ul>
+                <li><a href="./index.html">Hjem</a></li>
+                <li><a href="./priser.html">Meny</a></li>
+                <li><a href="./Send.html">Send</a></li>
+                <li><a href="">Kontakt Oss</a></li>
+            </ul>
+        </nav>
+     <center> 
+        <div class="text-container">
+            <h1>Kantina <br> På Røyken VGS!</h1>
+            <p>Dette er en nettside for kantina <br>
+            i Røyken Videregående skole.</p>
+            <a href="./Meny.html">Sjekk ut Menyen vår</a>
+
+        </div>
+
+     </center>
+    </div>
+
+    <script src="./script.js"></script>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+          apiKey: "AIzaSyBTz36CZKlfRALx0zDGPv5cc44j5CjL1nk",
+          authDomain: "kantine-d76e7.firebaseapp.com",
+          projectId: "kantine-d76e7",
+          storageBucket: "kantine-d76e7.appspot.com",
+          messagingSenderId: "216162997333",
+          appId: "1:216162997333:web:87e36da8c6fdac3b8d70dc",
+          measurementId: "G-TRQCHSXX3J"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+   
+
+   import {getDatabase, ref, get, set, child, update, remove}
+   from "https://www.gstatic.com/firebasejs/9.17.2/firebase-database.js"
+
+   const db = getDatabase();
+   
+      </script>
+</body>
+</html>

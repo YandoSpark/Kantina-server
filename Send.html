@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+
+  <body>
+    <div class="Hero">
+      <nav>
+        <img src="img/menu.png" class="menu-img" />
+        <h1 class="logo">Kantina</h1>
+        <ul>
+          <li><a href="./index.html">Hjem</a></li>
+          <li><a href="./priser.html">Meny</a></li>
+          <li><a href="./Send.html">Send</a></li>
+          <li><a href="">Kontakt Oss</a></li>
+        </ul>
+      </nav>
+      <center>
+        <div class="send">
+          <select name="Meny" id="meny">
+            <option value="Drikker">Driker</option>
+            <option value="sandwitcher">sandwitcher</option>
+            <option value="Iskrem">Iskrem</option>
+          </select>
+          <br />
+          <br />
+
+          <input type="text" id="produktInput" placeholder="Produkt" />
+          <input type="text" id="prisInput" placeholder="Pris" /> <br />
+          <textarea id="forklaringInput" cols="30" rows="10"></textarea> <br />
+          <button id="send">Putt produktet på Menyen</button>
+        </div>
+      </center>
+    </div>
+
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
+      // TODO: Add SDKs for Firebase products that you want to use
+      import { getFirestore, addDoc, collection } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-firestore.js"
+
+      // https://firebase.google.com/docs/web/setup#available-libraries
+
+      // Your web app's Firebase configuration
+      const firebaseConfig = {
+          apiKey: "AIzaSyDXxV5IDE97z4QXqS8PRko0DaJDrt5l2Gg",
+          authDomain: "kantine-639e0.firebaseapp.com",
+          projectId: "kantine-639e0",
+          storageBucket: "kantine-639e0.appspot.com",
+          messagingSenderId: "555039169437",
+          appId: "1:555039169437:web:ea1aa56cbfb0e9a8b62d74"
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const db = getFirestore();
+
+      // addDoc(
+      //     collection(db, "elever"), {
+      //     fornavn: "Rebecca",
+      //     etternavn: "Thomasen",
+      //     telefon: "12345678"
+      // });
+      document.querySelector("#send").addEventListener
+          ("click", function () {
+              var meny = document.querySelector("#meny").value
+              var prod = document.querySelector("#produktInput").value
+              var pris = document.querySelector("#prisInput").value
+              var forklaring = document.querySelector("#forklaringInput").value
+              addDoc(
+                  collection(db, "KantineListe"), {
+                  Meny: meny,
+                  produkt: prod,
+                  priser: pris,
+                  forklaring: forklaring
+              });
+          })
+
+      await updateDoc(
+          doc(db, "KantineListe"), {
+          Meny: meny,
+          produkt: prod,
+          priser: pris,
+          forklaring: forklaring
+      })
+
+      document.querySelector("#find").addEventListener("click", function () 
+      { var fnd = document.querySelector("#rett").value; 
+      const snapshot = getDocs(collection(db, "Produkt")); 
+      snapshot.then((querySnapshot) => { querySnapshot.forEach((docSnap) => {
+         if (docSnap.data().rett == fnd) 
+         { document.querySelector("#rett").value = docSnap.data().rett; 
+         document.querySelector("#indigrienser").value = docSnap.data().indigrienser; 
+         document.querySelector("#pris").value = docSnap.data().pris 
+         document.querySelector("#bilde").value = docSnap.data().bilde 
+         document.querySelector("#meny").value = docSnap.data().meny 
+         console.log(docSnap._key.path.segments[6]); } }) }) })
+    </script>
+
+    <!-- <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        import { getFirestore, addDoc, collection } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-firestore.js"
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+          apiKey: "AIzaSyCe-zERPbPcvRrWpvEUSHdYQqmv3_jTB50",
+          authDomain: "kantina-5211a.firebaseapp.com",
+          projectId: "kantina-5211a",
+          storageBucket: "kantina-5211a.appspot.com",
+          messagingSenderId: "1074705955973",
+          appId: "1:1074705955973:web:61193dba2898e750443dec"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore();
+   
+        document.querySelector("#send").addEventListener
+        ("click", function(){
+            var prod = document.querySelector("#produktInput").value
+            var pris = document.querySelector("#prisInput").value
+            var forklaring = document.querySelector("#forklaringInput").value
+            addDoc(
+            collection(db, "KantineListe"), {
+                produkt: "Produkt",
+                priser: "Priser",
+                forklaring: "forklaring"
+            });
+        })  
+      </script> -->
+
+    <script src="./script.js"></script>
+  </body>
+</html>
